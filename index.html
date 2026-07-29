@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Milhão Rumo a Petrobras</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+</head>
+
+<body>
+
+    <!-- PAINEL LATERAL COM OS 25 NÍVEIS -->
+    <aside id="painel-lateral">
+        <div class="logo-painel">
+            <h2>🏆 ESCADA DO MILHÃO</h2>
+            <span>Normas Regulamentadoras</span>
+        </div>
+        <ul id="lista-premios">
+            <li id="nivel-25" data-nivel="25"><span>25ª Pergunta</span> <strong>R$ 1.000.000</strong></li>
+            <li id="nivel-24" data-nivel="24"><span>24ª Pergunta</span> <strong>R$ 800.000</strong></li>
+            <li id="nivel-23" data-nivel="23"><span>23ª Pergunta</span> <strong>R$ 650.000</strong></li>
+            <li id="nivel-22" data-nivel="22"><span>22ª Pergunta</span> <strong>R$ 500.000</strong></li>
+            <li id="nivel-21" data-nivel="21"><span>21ª Pergunta</span> <strong>R$ 400.000</strong></li>
+            <li id="nivel-20" data-nivel="20"><span>20ª Pergunta</span> <strong>R$ 300.000</strong></li>
+            <li id="nivel-19" data-nivel="19"><span>19ª Pergunta</span> <strong>R$ 250.000</strong></li>
+            <li id="nivel-18" data-nivel="18"><span>18ª Pergunta</span> <strong>R$ 200.000</strong></li>
+            <li id="nivel-17" data-nivel="17"><span>17ª Pergunta</span> <strong>R$ 150.000</strong></li>
+            <li id="nivel-16" data-nivel="16"><span>16ª Pergunta</span> <strong>R$ 100.000</strong></li>
+            <li id="nivel-15" data-nivel="15"><span>15ª Pergunta</span> <strong>R$ 80.000</strong></li>
+            <li id="nivel-14" data-nivel="14"><span>14ª Pergunta</span> <strong>R$ 60.000</strong></li>
+            <li id="nivel-13" data-nivel="13"><span>13ª Pergunta</span> <strong>R$ 50.000</strong></li>
+            <li id="nivel-12" data-nivel="12"><span>12ª Pergunta</span> <strong>R$ 40.000</strong></li>
+            <li id="nivel-11" data-nivel="11"><span>11ª Pergunta</span> <strong>R$ 30.000</strong></li>
+            <li id="nivel-10" data-nivel="10"><span>10ª Pergunta</span> <strong>R$ 25.000</strong></li>
+            <li id="nivel-9" data-nivel="9"><span>9ª Pergunta</span> <strong>R$ 20.000</strong></li>
+            <li id="nivel-8" data-nivel="8"><span>8ª Pergunta</span> <strong>R$ 15.000</strong></li>
+            <li id="nivel-7" data-nivel="7"><span>7ª Pergunta</span> <strong>R$ 10.000</strong></li>
+            <li id="nivel-6" data-nivel="6"><span>6ª Pergunta</span> <strong>R$ 7.500</strong></li>
+            <li id="nivel-5" data-nivel="5"><span>5ª Pergunta</span> <strong>R$ 5.000</strong></li>
+            <li id="nivel-4" data-nivel="4"><span>4ª Pergunta</span> <strong>R$ 3.500</strong></li>
+            <li id="nivel-3" data-nivel="3"><span>3ª Pergunta</span> <strong>R$ 2.500</strong></li>
+            <li id="nivel-2" data-nivel="2"><span>2ª Pergunta</span> <strong>R$ 1.500</strong></li>
+            <li id="nivel-1" data-nivel="1"><span>1ª Pergunta</span> <strong>R$ 1.000</strong></li>
+        </ul>
+    </aside>
+
+    <main class="container">
+        <!-- Tela Inicial -->
+        <section id="inicio" class="card-tela">
+            <div class="badge-programa">TREINAMENTO CORPORATIVO OFICIAL</div>
+            <h1 class="titulo-jogo">JOGO DO MILHÃO</h1>
+            <h2 class="subtitulo-jogo">Rumo a Petrobras</h2>
+            <p class="frase">
+                "Valendo um milhão de reais em conhecimento técnico! Domine as NRs (01, 03, 04, 05 e 06) e conquiste sua vaga."
+            </p>
+            <button class="btn-principal" onclick="iniciarJogo()">
+                COMEÇAR O JOGO 🚀
+            </button>
+        </section>
+
+        <!-- Tela do Jogo -->
+        <section id="jogo" class="card-tela" style="display:none;">
+            <header class="topo-jogo">
+                <div class="info-caixa">
+                    <span>Prêmio Acumulado</span>
+                    <strong id="premio">R$ 0</strong>
+                </div>
+                <div class="info-caixa">
+                    <span>Nível Atual</span>
+                    <strong id="contador">1 / 25</strong>
+                </div>
+            </header>
+
+            <div class="barra-container">
+                <div id="progresso"></div>
+            </div>
+
+            <div class="pergunta-box">
+                <h2 id="textoPergunta">Carregando pergunta...</h2>
+            </div>
+
+            <div class="alternativas">
+                <button class="btn-alt" id="a" onclick="responder(0)"></button>
+                <button class="btn-alt" id="b" onclick="responder(1)"></button>
+                <button class="btn-alt" id="c" onclick="responder(2)"></button>
+                <button class="btn-alt" id="d" onclick="responder(3)"></button>
+            </div>
+
+            <footer class="motivacao-box">
+                <p id="motivacao">Foque na pergunta. Qual é a sua resposta definitiva?</p>
+            </footer>
+        </section>
+
+        <!-- Tela de Vitória -->
+        <section id="vitoria" class="card-tela" style="display:none;">
+            <div class="icone-fim">🌟🏆🌟</div>
+            <h1 class="titulo-fim">VOCÊ É O NOVO MILIONÁRIO!</h1>
+            <h2>PARABÉNS PELA CONQUISTA MÁXIMA</h2>
+            <h1 class="milhao">R$ 1.000.000</h1>
+            <p>Você gabaritou todas as etapas sobre as Normas Regulamentadoras e provou estar totalmente preparado para a Petrobras.</p>
+            <button class="btn-principal" onclick="location.reload()">Jogar Novamente</button>
+        </section>
+
+        <!-- Tela de Derrota -->
+        <section id="derrota" class="card-tela" style="display:none;">
+            <div class="icone-fim">⚠️</div>
+            <h1 class="titulo-fim">FIM DE JOGO!</h1>
+            <p>Você garantiu em prêmios:</p>
+            <h2 id="valorFinal" class="valor-derrota">R$ 0</h2>
+            <p>A segurança não permite vacilos. Revise o conteúdo das NRs e tente buscar o prêmio novamente!</p>
+            <button class="btn-principal" onclick="location.reload()">Tentar Novamente</button>
+        </section>
+    </main>
+
+    <script src="perguntas.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
